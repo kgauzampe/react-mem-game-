@@ -3,10 +3,10 @@ function shuffle(array) {
     for (let i = 0; i <array.length -1; i++) {
        let randomIndex = Math.floor(Math.random() * (i + 1)) 
        let temp = array[i]
-       _array[i] = _array[randomIndex]
+       _array[i] = _array[randomIndex] 
        _array[randomIndex] = temp
     }
-    return _array
+    return _array;
 }
 export default function initializeDeck() {
     let id = 0
