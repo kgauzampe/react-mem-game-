@@ -14,7 +14,14 @@ export default function App() {
     setCards(initializeDeck())
   }, [])
 
-    const handleClick = (id) => setFlipped([...flipped, id])
+    useEffect(() => {
+      const resizeListener = window.addEventListener('resize', resizeBoard)
+      return () => window.removeEventListener('resize', resizeListener)
+    }
+    )
+
+    const handleClick = (id) => setFlipped([...flipped, id]) 
+
     const resizeBoard = () => {
       setDimension(Math.min(
         document.documentElement.clientWidth,
@@ -28,6 +35,7 @@ export default function App() {
         <div>
             <h2>Test your memory</h2>
             <Board
+            dimension={dimension}
             cards={cards}
             flipped={flipped}
             handleClick={handleClick}/>
