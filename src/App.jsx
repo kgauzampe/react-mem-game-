@@ -25,8 +25,17 @@ export default function App() {
 
     const handleClick = (id) => {
     setDisabled(true)
-    setFlipped([...flipped, id]) 
+    if (flipped.length == 0) {
+        setFlipped([id]) 
+        setDisabled(false)
+        return
+    } else {
+        if (carddoubleclicked(id))
+        return
     }
+    
+    }
+    const carddoubleclicked = (id) => flipped.includes(id)
 
     const resizeBoard = () => {
       setDimension(Math.min(
