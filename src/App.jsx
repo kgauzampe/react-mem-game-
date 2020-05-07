@@ -19,18 +19,19 @@ export default function App() {
 
     useEffect(() => {
       const resizeListener = window.addEventListener('resize', resizeBoard)
-      return () => window.removeEventListener('resize', resizeListener)
+      return () => window.removeEventListener('resize', resizeListener) //resizing board
     }
     )
 
     const handleClick = (id) => {
     setDisabled(true)
-    if (flipped.length == 0) {
+    if (flipped.length == 0) {  //disabling clicked card
         setFlipped([id]) 
         setDisabled(false)
         return
     } else {
-        if (carddoubleclicked(id))
+        if (carddoubleclicked(id))  //checking if card was double clicked
+        setFlipped([flipped[0], id])  
         return
     }
     
@@ -40,7 +41,7 @@ export default function App() {
     const resizeBoard = () => {
       setDimension(Math.min(
         document.documentElement.clientWidth,
-        document.documentElement.clientHeight,
+        document.documentElement.clientHeight, // setting board size
          ),
          )
     }

@@ -14,10 +14,10 @@ export default function Card({handleClick, id, type, flipped, height, width, dis
         <div className="flipper">
             <img
               style={{ 
-                  height, width
+                  height, width  //card flip
               }}
               className={flipped ? 'front' : 'back'}
-              src={flipped ? `/images/${type}.jpeg` : `/img/back.jpg`}
+              src={flipped ? `/images/${type}.jpeg` : `/imgages/back.jpg`}
               />
 
         </div>
@@ -28,7 +28,7 @@ Card.prototype= {
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     flipped: PropTypes.bool.isRequired,
-    type : PropTypes.string.isRequired,
+    type : PropTypes.string.isRequired,     //card property types
     height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,  
     disabled: PropTypes.bool.isRequired
