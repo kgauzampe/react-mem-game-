@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './styles.css' 
 
-export default function Card({handleClick, id, type, flipped, height, width, disabled }) {
+export default function Card({handleClick, id, type, flipped, solved, height, width, disabled }) {
 
     return <div
-    className={`flip-container ${flipped ? 'flipped' : ''}`}
+    className={`flip-container ${flipped ? 'flipped' : ''}`} 
     style={{
         width, height
     }}
@@ -17,7 +17,7 @@ export default function Card({handleClick, id, type, flipped, height, width, dis
                   height, width  //card flip
               }}
               className={flipped ? 'front' : 'back'}
-              src={flipped ? `/images/${type}.jpeg` : `/imgages/back.jpg`}
+              src={flipped || solved ? `/img/${type}.png` : `/img/back.png`} //image source
               />
 
         </div>
@@ -28,6 +28,7 @@ Card.prototype= {
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     flipped: PropTypes.bool.isRequired,
+    solved: PropTypes.bool.isRequired,
     type : PropTypes.string.isRequired,     //card property types
     height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,  
