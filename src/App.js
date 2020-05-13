@@ -20,7 +20,10 @@ export default function App() {
   }, []) 
   useEffect(() => {
     preloadimages()
-  }, cards)
+  }, cards[0])
+  /*useEffect(() => {
+    alert(`Hi ${props.name}, your score is changed`);
+}, [props.score]);*/
 
     useEffect(() => {
       const resizeListener = window.addEventListener('resize', resizeBoard)
@@ -52,7 +55,7 @@ export default function App() {
       cards.map(card => {
         const src = `/img/${card.type}.png`
         new Image().src = src
-      })
+      })  
       
     }
 
