@@ -1,98 +1,86 @@
-import React, {useState, useEffect} from 'react'
-import Board from './components/board'
+import React, {useState, useEffect} from 'react'; 
+import Board  from './components/board';
 import initializeDeck from './deck'
 
-
- 
 export default function App() {
-    const [cards, setCards] = useState([])
-    const [flipped,setFlipped] = useState([])
-    const [dimension, setDimension] = useState(400) 
-    const [solved, setSolved] = useState([])
-    const [disabled, setDisabled] = useState(false)
-
+  const [cards, setCards] = useState([])
+  const [flipped, setFlipped] = useState([])
+  const [dimension, setDimension] = useState(400)
+  const [solved, setSolved] = useState([])
+  const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
     resizeBoard()
     setCards(initializeDeck())
    
-     
-  }, []) 
+  }, [])
+
   useEffect(() => {
-    preloadimages()
-  }, cards[0])
-  /*useEffect(() => {
-    alert(`Hi ${props.name}, your score is changed`);
-}, [props.score]);*/
+    preloadImages()
+  },cards)
 
-    useEffect(() => {
-      const resizeListener = window.addEventListener('resize', resizeBoard)
-
-      return () => window.removeEventListener('resize', resizeListener) //resizing board
-    }
-    )
-
-    const handleClick = (id) => {
+  useEffect(() =>{
+    const resizeListener = window.addEventListener('resize',resizeBoard)
+    return () => window.removeEventListener('resize', resizeListener)
+  })
+  const handleClick = (id) => {
     setDisabled(true)
-    if (flipped.length === 0) {  //disabling clicked card
-        setFlipped([id]) 
-        setDisabled(true)
+    if (flipped === 0) {
+      setFlipped([...flipped,id])
+      setDisabled(false)
     } else {
-        if (carddoubleclicked(id))  return //checking if card was double clicked
-        setFlipped([flipped[0], id])  
-        if (Matched(id)) {
-          setSolved([...solved, flipped[0], id])
-           resetCards()
-        } else {
-          setTimeout(resetCards, 3000)
-        }
-       
+      if (doubleClicked(id)) return 
+      setFlipped([flipped[0], id])
+      if (matched(id)){
+        setSolved([...solved,flipped[0],id])
+        resetCards()
+      } else {
+        setTimeout(resetCards, 2000)
+      }
     }
     
-    }
-
-    const preloadimages = () => {
-      cards.map(card => {
-        const src = `/img/${card.type}.png`
-        new Image().src = src
-      })  
-      
-    }
-
-    const resetCards = () => {
-      setFlipped([])
-      setDisabled(false)
-    }
-
-    const carddoubleclicked = (id) => flipped.includes(id)
-
-    const Matched = (id) => {
-      const clickedCard = cards.find((card) => card.id === id)
-      const flippedCard = cards.find((card) => flipped[0] === id)
-      return flippedCard.type === clickedCard.type
-    }
-
-    const resizeBoard = () => {
-      setDimension(Math.min(
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight, // setting board size
-         ),
-         )
-    }
+  }
+  const preloadImages = () => {
+    
+    cards.map(card => {
+      const src = `/img?${card.type}.png`
+      new Image().src = src
+     // return cards
+    }) 
+    
+  }
+  const resetCards = () => {
+    setFlipped([])
+    setDisabled(false) 
+  }
+  const doubleClicked = (id) => flipped.includes(id)
+  const matched = (id) => {
+    const clicked = cards.find((card) => card.id === id)
+    const flippedCard = cards.find((card) => flipped[0] === card.id)
+    return flippedCard === clicked
+  }
+  const resizeBoard = () => {
+    setDimension(Math.min(
+      document.documentElement.clientHeight,
+      document.documentElement.clientWidth,
+    ))
+  }
 
 
-    return(
-        <div>
-            <h2>Test your memory</h2>
-            <Board
-            dimension={dimension}
-            cards={cards}
-            flipped={flipped}
-            handleClick={handleClick}
-            disabled={disabled}
-            solved={solved}  
-            />
+  return (
+  <div>
+  <h2>Can you guess the cards</h2>
+  <Board 
+  dimension={dimension}
+  cards={cards}
+  flipped={flipped}
+  handleClick={handleClick}
+  disabled={disabled}
+  solved={solved}
+  />
 
-        </div>
-    )
+  
+  </div>
+  );
 }
+

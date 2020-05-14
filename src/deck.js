@@ -10,17 +10,17 @@ function shuffle(array) {
 }
 export default function initializeDeck() {
     let id = 0
-    const cards = ['react', 'reactu ', 'redux', 'vue', 'angular', 'jacascript', 'ruby', 'rails'
-].reduce((acc,type) => {
-    acc.push({
-        id: id++,     // initailizing the deck
-        type
-    })
-    acc.push({
-        id: id++,
-        type
-    })
-    return acc
-},[])
-return shuffle(cards)
+    const cards = ['1', '2', '3', '4', '5', '6', '7', '8'].reduce((acc,type) => {
+        acc.push({
+            id: id++,     // initailizing the deck
+            type
+        })
+        acc.push({
+            id: id++,
+            type
+        })
+        return acc
+    },[])
+    
+    return shuffle(cards)
 }
