@@ -7,9 +7,9 @@ export default function App() {
   const [flipped, setFlipped] = useState([])
   const [dimension, setDimension] = useState(400)
   const [solved, setSolved] = useState([])
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState(false) 
 
-  useEffect(() => {
+  useEffect(() => { // useEffect
     resizeBoard()
     setCards(initializeDeck())
    
