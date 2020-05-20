@@ -64,6 +64,8 @@ useEffect(() => {
   }
 
 
+
+
   return (
     <div>
       <h1>Memory Game</h1>
@@ -77,4 +79,5 @@ useEffect(() => {
      solved={solved} />
          </div>
   )
-} 
+}
+
