@@ -1,12 +1,12 @@
 .flip-container {
-    perspective: 1800px;
+    perspective: 1000px;
     display: inline-block;
     border: 1px solid gray;
-    background: navy; 
+    background: black;
 }
 
 .flip-container.flipped .flipper {
-    transform: rotate(180deg);
+    transform: rotateY(180deg);
 }
 
 .flipper {
